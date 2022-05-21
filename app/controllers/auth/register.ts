@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import registerUser from "./helpers/registerUser";
+import returnToken from './helpers/returnToken'
 /**
  * Register function called by route
  * @param {Object} req - request object
@@ -7,6 +8,6 @@ import registerUser from "./helpers/registerUser";
  */
 
 export default async function register(req: Request, res: Response){
-        const item = await registerUser(req)
-        res.status(201).json(item)
+        const user = await registerUser(req)
+        res.status(201).json(await returnToken(user))
 }
