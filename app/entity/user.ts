@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
+import { Role } from "./role";
+import  bcrypt  from 'bcrypt'
 
 @Entity()
 export class User {
@@ -26,11 +28,8 @@ export class User {
     })
     password : string;
     
-    @Column({
-        type: 'varchar',
-        length: 20,
-    })
-    role : string
+    @ManyToOne(() => Role, (role) => role.users)
+    role : Role
 
     @Column({default: true })
     status: boolean;
@@ -40,4 +39,11 @@ export class User {
 
     @UpdateDateColumn()
     updateAt: Date;
+    static role: any;
+
+    @BeforeInsert()
+    async hashPassword() {
+        this.password = await bcrypt.hash(this.password, 10)
+    }
+
 }
