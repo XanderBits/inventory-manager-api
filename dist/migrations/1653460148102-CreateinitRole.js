@@ -8,21 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv/config");
-require("reflect-metadata");
-const app_1 = __importDefault(require("./app"));
-const ormconfig_1 = require("./ormconfig");
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield ormconfig_1.AppDataSource.initialize()
-            .then(() => console.log("**SUCCESSFULLY CONNECTED TO DATABASE**"))
-            .catch((err) => console.error(err));
-        const PORT = process.env.PORT || 3000;
-        app_1.default.listen(PORT, () => console.log(`Server listening on PORT:${PORT}`));
-    });
+exports.CreateinitRole1653460148102 = void 0;
+class CreateinitRole1653460148102 {
+    up(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`INSERT INTO "Roles"(id,name) VALUES (1,'Administrador');`),
+                yield queryRunner.query(`INSERT INTO "Roles"(id,name) VALUES (2,'User');`);
+        });
+    }
+    down(queryRunner) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield queryRunner.query(`DELETE FROM "Roles" WHERE id = 1;`),
+                yield queryRunner.query(`DELETE FROM "Roles" WHERE id = 2;`);
+        });
+    }
 }
-main();
+exports.CreateinitRole1653460148102 = CreateinitRole1653460148102;
