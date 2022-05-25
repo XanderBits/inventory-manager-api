@@ -1,9 +1,9 @@
 import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
-import { Role } from "./role";
+import { Roles } from "./role";
 import  bcrypt  from 'bcrypt'
 
 @Entity()
-export class User {
+export class Users {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -28,8 +28,8 @@ export class User {
     })
     password : string;
     
-    @ManyToOne(() => Role, (role) => role.users)
-    role : Role
+    @ManyToOne(() => Roles, (role) => role.users)
+    role : Roles
 
     @Column({default: true })
     status: boolean;
