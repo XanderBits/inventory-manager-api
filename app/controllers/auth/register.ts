@@ -14,7 +14,8 @@ export async function register(req: Request, res: Response) {
     if (!doesEmailExists) {
       const user = await registerUser(req);
       res.status(201).json(await returnToken(user));
-    } else return doesEmailExists;
+    }else 
+      res.status(400).json(doesEmailExists)
   } catch (error) {
     res.status(500).send(error);
   }
