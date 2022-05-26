@@ -7,17 +7,17 @@ export async function registerUser(req: Request): Promise<Object> {
   try {
     const { name, lastname, email, password, role } = req.body;
     const userRole = await AppDataSource.getRepository(Roles)
-      .createQueryBuilder("role")
-      .where("role.id = :id", { id: role })
+      .createQueryBuilder("roles")
+      .where("roles.id = :id", { id: role })
       .getOne();
 
-    const user = new Users();
-    user.name = name;
-    user.lastname = lastname;
-    user.email = email;
-    user.password = password;
-    user.role = userRole!;
-
+      const user = new Users();
+      user.name = name;
+      user.lastname = lastname;
+      user.email = email;
+      user.password = password;
+      user.role = userRole!;
+      
     await AppDataSource.getRepository(Users).save(user);
     return user;
   } catch (error) {
