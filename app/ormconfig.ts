@@ -4,6 +4,7 @@ import { Roles } from "./entity/role";
 import { Product } from "./entity/product";
 import { CreateinitRole1653460148102 } from './migrations/1653460148102-CreateinitRole'
 import { CreateUserRoot1653460170008 } from './migrations/1653460170008-CreateUserRoot'
+import "dotenv/config";
 
 
 export const AppDataSource = new DataSource({
