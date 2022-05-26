@@ -3,8 +3,8 @@ import { MigrationInterface, QueryRunner } from "typeorm"
 export class CreateinitRole1653460148102 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`INSERT INTO Roles(id,name) VALUES (1,'Administrador');`),
-        await queryRunner.query(`INSERT INTO Roles(id,name) VALUES (2,'User');`)
+        await queryRunner.query(`INSERT INTO Roles(name) VALUES ('Administrador');`),
+        await queryRunner.query(`INSERT INTO Roles(name) VALUES ('User');`)
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
