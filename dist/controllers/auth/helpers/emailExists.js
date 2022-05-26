@@ -18,7 +18,7 @@ function emailExists(email) {
             .createQueryBuilder("user")
             .where("user.email = :email", { email: email })
             .getOne();
-        if (getEmail)
+        if (getEmail != null)
             return "EMAIL_ALREADY_EXISTS";
         else
             return false;

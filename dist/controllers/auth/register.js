@@ -27,7 +27,7 @@ function register(req, res) {
                 res.status(201).json(yield (0, returnToken_1.returnToken)(user));
             }
             else
-                return doesEmailExists;
+                res.status(400).json(doesEmailExists);
         }
         catch (error) {
             res.status(500).send(error);
