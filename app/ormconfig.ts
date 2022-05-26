@@ -8,11 +8,11 @@ import { CreateUserRoot1653460170008 } from './migrations/1653460170008-CreateUs
 
 export const AppDataSource = new DataSource({
 	type: "postgres",
-	host: "localhost",
+	host: process.env.TYPEORM_HOST,
 	port: 5432,
-	username: "postgres",
-	password: "alex1924",
-	database: "demoDB",
+	username: process.env.TYPEORM_USERNAME,
+	password: process.env.TYPEORM_PASSWORD,
+	database: process.env.TYPEORM_DATABASE,
 	synchronize: true,
 	logging: true,
 	entities: [Users, Roles, Product],
