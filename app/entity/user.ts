@@ -41,6 +41,12 @@ export class Users {
     updateAt: Date;
     static role: any;
 
+    checkPassword(passwordAttempt: string, cb: Function) {
+        bcrypt.compare(passwordAttempt, this.password,(err, isMatch) => {
+            err ? cb(err) : cb(null, isMatch)
+        });
+    }
+
     @BeforeInsert()
     async hashPassword() {
         this.password = await bcrypt.hash(this.password, 10)
