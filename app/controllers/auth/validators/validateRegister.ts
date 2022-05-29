@@ -1,10 +1,10 @@
-/**
- * Validates register request
- */
 import { NextFunction, Request, Response } from "express"
 import { check } from "express-validator"
 import { validateResult } from '../../../middlewares/validateResult'
 
+/**
+ * Validates register request
+ */
 export const validateRegister = [
     check('name')
     .exists()
